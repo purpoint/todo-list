@@ -10,20 +10,55 @@
   <main class="app">
     <h1>To-Do</h1>
 
-    <form id="todo-form" autocomplete="off">
-      <input
-        type="text"
-        id="todo-input"
-        placeholder="Add a task..."
-        aria-label="New task"
-        required
-      />
-      <button type="submit">Add</button>
-    </form>
+    <section id="auth-view" hidden>
+      <form id="auth-form">
+        <input
+          type="text"
+          id="auth-username"
+          placeholder="Username"
+          aria-label="Username"
+          autocomplete="username"
+          required
+        />
+        <input
+          type="password"
+          id="auth-password"
+          placeholder="Password"
+          aria-label="Password"
+          autocomplete="current-password"
+          minlength="4"
+          required
+        />
+        <button type="submit" id="auth-submit">Sign in</button>
+      </form>
+      <p id="auth-error" hidden></p>
+      <p class="auth-switch">
+        <span id="auth-switch-text">No account?</span>
+        <button type="button" id="auth-toggle">Sign up</button>
+      </p>
+    </section>
 
-    <ul id="todo-list"></ul>
+    <section id="todo-view" hidden>
+      <div class="user-bar">
+        <span id="user-name"></span>
+        <button type="button" id="sign-out">Sign out</button>
+      </div>
 
-    <p id="empty-state">No tasks yet.</p>
+      <form id="todo-form" autocomplete="off">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Add a task..."
+          aria-label="New task"
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <ul id="todo-list"></ul>
+
+      <p id="empty-state">No tasks yet.</p>
+    </section>
   </main>
 
   <script src="script.js"></script>
