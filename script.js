@@ -1,5 +1,7 @@
 const authView = document.getElementById("auth-view");
 const authForm = document.getElementById("auth-form");
+const authTitle = document.getElementById("auth-title");
+const authSubtitle = document.getElementById("auth-subtitle");
 const authUsername = document.getElementById("auth-username");
 const authPassword = document.getElementById("auth-password");
 const authSubmit = document.getElementById("auth-submit");
@@ -9,6 +11,8 @@ const authSwitchText = document.getElementById("auth-switch-text");
 
 const todoView = document.getElementById("todo-view");
 const userName = document.getElementById("user-name");
+const userAvatar = document.getElementById("user-avatar");
+const taskCount = document.getElementById("task-count");
 const signOutBtn = document.getElementById("sign-out");
 const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
@@ -42,6 +46,9 @@ function showAuthError(message) {
 function setAuthMode(mode) {
   authMode = mode;
   authError.hidden = true;
+  authTitle.textContent = mode === "signin" ? "Welcome back" : "Create account";
+  authSubtitle.textContent =
+    mode === "signin" ? "Sign in to continue to your tasks" : "Sign up to start tracking tasks";
   authSubmit.textContent = mode === "signin" ? "Sign in" : "Sign up";
   authSwitchText.textContent = mode === "signin" ? "No account?" : "Have an account?";
   authToggle.textContent = mode === "signin" ? "Sign up" : "Sign in";
@@ -116,7 +123,12 @@ form.addEventListener("submit", (e) => {
 function renderTodos() {
   const todos = getTodos();
   list.innerHTML = "";
-  emptyState.style.display = todos.length ? "none" : "block";
+  emptyState.hidden = todos.length > 0;
+
+  const remaining = todos.filter((t) => !t.done).length;
+  taskCount.textContent = todos.length
+    ? `${remaining} of ${todos.length} task${todos.length === 1 ? "" : "s"} remaining`
+    : "Your list is empty";
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
@@ -155,6 +167,7 @@ function render() {
   todoView.hidden = !signedIn;
   if (signedIn) {
     userName.textContent = currentUser;
+    userAvatar.textContent = currentUser[0];
     renderTodos();
   }
 }

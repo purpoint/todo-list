@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>To-Do</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="app">
-    <h1>To-Do</h1>
+    <section id="auth-view" class="card" hidden>
+      <div class="logo">&#10003;</div>
+      <h1 id="auth-title">Welcome back</h1>
+      <p class="subtitle" id="auth-subtitle">Sign in to continue to your tasks</p>
 
-    <section id="auth-view" hidden>
       <form id="auth-form">
         <input
           type="text"
@@ -38,11 +46,17 @@
       </p>
     </section>
 
-    <section id="todo-view" hidden>
-      <div class="user-bar">
-        <span id="user-name"></span>
+    <section id="todo-view" class="card" hidden>
+      <header class="user-bar">
+        <div class="user-info">
+          <span class="avatar" id="user-avatar"></span>
+          <span id="user-name"></span>
+        </div>
         <button type="button" id="sign-out">Sign out</button>
-      </div>
+      </header>
+
+      <h1>My Tasks</h1>
+      <p class="subtitle" id="task-count"></p>
 
       <form id="todo-form" autocomplete="off">
         <input
@@ -57,7 +71,10 @@
 
       <ul id="todo-list"></ul>
 
-      <p id="empty-state">No tasks yet.</p>
+      <div id="empty-state" hidden>
+        <div class="empty-icon">&#10003;</div>
+        <p>All clear! Add your first task above.</p>
+      </div>
     </section>
   </main>
 

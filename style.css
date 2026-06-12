@@ -5,107 +5,218 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fafafa;
-  color: #222;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f3f4fb;
+  background-image:
+    radial-gradient(at 15% 0%, rgba(99, 102, 241, 0.18), transparent 50%),
+    radial-gradient(at 85% 100%, rgba(168, 85, 247, 0.16), transparent 50%);
+  background-attachment: fixed;
+  color: #1e1e2e;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
-  padding: 48px 16px;
+  padding: 64px 16px;
 }
 
 .app {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow:
+    0 1px 2px rgba(40, 35, 110, 0.05),
+    0 20px 60px rgba(80, 70, 200, 0.13);
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #8b8b9e;
+  font-size: 0.95rem;
   margin-bottom: 24px;
 }
 
+/* ---- Inputs & buttons ---- */
+
 input[type="text"],
 input[type="password"] {
-  padding: 10px 12px;
+  font-family: inherit;
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: #fff;
+  color: inherit;
+  padding: 12px 14px;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  background: #f4f4f9;
   outline: none;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #a4a4b8;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-color: #888;
+  border-color: #6366f1;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 button[type="submit"] {
-  padding: 10px 16px;
+  font-family: inherit;
   font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 20px;
   border: none;
-  border-radius: 6px;
-  background: #222;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #fff;
   cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 button[type="submit"]:hover {
-  background: #444;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+}
+
+button[type="submit"]:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---- Auth view ---- */
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
 }
 
 #auth-form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
 }
 
 #auth-error {
-  color: #e05555;
-  margin-bottom: 12px;
+  color: #e0455e;
+  font-size: 0.9rem;
+  margin-top: 12px;
 }
 
 .auth-switch {
-  color: #999;
+  color: #8b8b9e;
+  font-size: 0.95rem;
+  margin-top: 20px;
 }
 
 .auth-switch button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
   border: none;
   background: none;
-  color: #222;
-  font-size: 1rem;
+  color: #6366f1;
   cursor: pointer;
-  text-decoration: underline;
   padding: 0;
 }
+
+.auth-switch button:hover {
+  text-decoration: underline;
+}
+
+/* ---- User bar ---- */
 
 .user-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  color: #999;
+  margin-bottom: 28px;
 }
 
-.user-bar button {
-  border: none;
-  background: none;
-  color: #222;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
 }
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+#sign-out {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  background: #f4f4f9;
+  color: #8b8b9e;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+#sign-out:hover {
+  background: #ecebf5;
+  color: #1e1e2e;
+}
+
+/* ---- Todo view ---- */
 
 #todo-form {
   display: flex;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 #todo-input {
   flex: 1;
+  min-width: 0;
 }
 
 #todo-list {
@@ -115,43 +226,106 @@ button[type="submit"]:hover {
 #todo-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 4px;
-  border-bottom: 1px solid #eee;
+  gap: 12px;
+  padding: 12px 10px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+#todo-list li:hover {
+  background: #f8f8fc;
 }
 
 #todo-list li span {
   flex: 1;
   word-break: break-word;
+  transition: color 0.2s;
 }
 
 #todo-list li.done span {
   text-decoration: line-through;
-  color: #999;
+  color: #b4b4c4;
 }
 
 #todo-list input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 2px solid #d6d6e4;
+  border-radius: 50%;
   cursor: pointer;
-  accent-color: #222;
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+#todo-list input[type="checkbox"]:hover {
+  border-color: #6366f1;
+}
+
+#todo-list input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: transparent;
+}
+
+#todo-list input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .delete-btn {
   border: none;
   background: none;
-  color: #bbb;
-  font-size: 1.1rem;
+  color: #b4b4c4;
+  font-size: 1.2rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+}
+
+#todo-list li:hover .delete-btn {
+  opacity: 1;
 }
 
 .delete-btn:hover {
-  color: #e05555;
+  color: #e0455e;
+  background: #fdeef1;
 }
 
+@media (hover: none) {
+  .delete-btn {
+    opacity: 1;
+  }
+}
+
+/* ---- Empty state ---- */
+
 #empty-state {
-  color: #999;
   text-align: center;
-  margin-top: 8px;
+  padding: 28px 0 12px;
+  color: #a4a4b8;
+}
+
+.empty-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border: 2px dashed #d6d6e4;
+  border-radius: 50%;
+  color: #c4c4d4;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
